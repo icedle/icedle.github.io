@@ -29,5 +29,26 @@
   
   
   
+  <entry>
+    <title>文章标题</title>
+    <link href="/2019/10/10/%E6%B5%8B%E8%AF%95/"/>
+    <url>/2019/10/10/%E6%B5%8B%E8%AF%95/</url>
+    
+    <content type="html"><![CDATA[<pre><code>这里是摘要&lt;!-- more --&gt;这里是正文</code></pre><p>​    void main()<br>​    {<br>​    printf(“Hello, Markdown.”);<br>​    }</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>Fluid</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
