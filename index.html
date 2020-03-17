@@ -13,11 +13,13 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  <meta name="description" content="A common people, a common student">
   <meta name="author" content="Icedle">
   <meta name="keywords" content="">
-  <title>Hexo</title>
+  <title>Icedle</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -43,11 +45,11 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Hexo</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Icedle</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -110,7 +112,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -124,10 +126,6 @@
           </div>
 
           
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
-          
         </div>
       </div>
     </div>
@@ -137,7 +135,7 @@
     
       <div class="container nopadding-md">
         <div class="py-5 z-depth-3" id="board"
-          style=margin-top:0>
+          >
           
           <div class="container">
             <div class="row">
@@ -155,8 +153,6 @@
 
       <a href="/2020/03/17/ceshi/">
         
-        
-          
         
         <div class="index-excerpt" >
           <div class="index-text mb-1"></div>
@@ -183,8 +179,6 @@
 
       <a href="/2020/03/17/%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%B5%8B%E8%AF%95/">
         
-        
-          
         
         <div class="index-excerpt" >
           <div class="index-text mb-1"></div>
@@ -219,23 +213,8 @@
       <a href="/2020/03/16/%E6%B5%8B%E8%AF%95/">
         
         
-          
-        
         <div class="index-excerpt" >
-          <div class="index-text mb-1">void main()
-{
-printf(“Hello, Markdown.”);
-}
-
-这是一个图片。
-第一章void main(){printf(“Hello, Markdown.”);}
-$a=B+c$
-1.1 Hexo部署到github$$s=a+b$$
-void main()
-{
-printf(“Hello, Markdown.”);`
-}
-1.2 随便说说</div>
+          <div class="index-text mb-1"></div>
         </div>
       </a>
 
@@ -265,8 +244,6 @@ printf(“Hello, Markdown.”);`
       <a href="/2020/03/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E6%B5%8B%E8%AF%95/">
         
         
-          
-        
         <div class="index-excerpt" >
           <div class="index-text mb-1"></div>
         </div>
@@ -293,13 +270,8 @@ printf(“Hello, Markdown.”);`
       <a href="/2020/03/16/hello-world/">
         
         
-          
-        
         <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
-More info: Writing
-Run server$ hexo server</div>
+          <div class="index-text mb-1"></div>
         </div>
       </a>
 
@@ -367,6 +339,23 @@ Run server$ hexo server</div>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
     </div>
     
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      收到了 <span id="busuanzi_value_site_pv"></span> 个目光
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      遇到了 <span id="busuanzi_value_site_uv"></span> 个伙伴
+    </span>
+    
+  </div>
+
 
     
 
@@ -390,10 +379,23 @@ Run server$ hexo server</div>
 
 
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 
 <!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
@@ -412,10 +414,10 @@ Run server$ hexo server</div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "总想着来日方长，最后成了大梦一场&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 60,
       loop: false,
     });
     typed.stop();
@@ -469,6 +471,13 @@ Run server$ hexo server</div>
   </script>
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 
