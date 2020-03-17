@@ -6,8 +6,9 @@ header,
   overflow-wrap: break-word;
 }
 body {
-  background-color: #eee;
-  color: #3c4858;
+  background-image: url("img/default.png");
+  background-attachment: fixed;
+  background-size: cover;
 }
 body a {
   color: #3c4858;
