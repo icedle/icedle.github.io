@@ -45,7 +45,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -126,10 +126,6 @@
           </div>
 
           
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
-          
         </div>
       </div>
     </div>
@@ -139,7 +135,7 @@
     
       <div class="container nopadding-md">
         <div class="py-5 z-depth-3" id="board"
-          style=margin-top:0>
+          >
           
           <div class="container">
             <div class="row">
@@ -419,6 +415,17 @@ Run server$ hexo server</div>
 <!-- Plugins -->
 
 
+  
+
+  
+
+  
+
+  
+
+  
+
+
 
   <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
   <script>
@@ -435,7 +442,7 @@ Run server$ hexo server</div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "今日任务：发呆（1/1)# 为空则按 hexo config.subtitle 显示&nbsp;",
+        "今日任务：发呆（1/1)&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -492,32 +499,6 @@ Run server$ hexo server</div>
   </script>
 
 
-
-  
-
-  
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-          tex2jax: {
-              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-              processEscapes: true,
-              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-          }
-      });
-
-      MathJax.Hub.Queue(function() {
-          var all = MathJax.Hub.getAllJax(), i;
-          for(i=0; i < all.length; i += 1) {
-              all[i].SourceElement().parentNode.className += ' has-jax';
-          }
-      });
-
-    </script>
-
-    <script  src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
-
-  
 
 
 
