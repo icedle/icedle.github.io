@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A common people, a common student">
+  <meta name="author" content="Icedle">
+  <meta name="keywords" content="">
+  <title>【蓝桥杯】C/C++校内模拟赛(持续更新) - Icedle</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Icedle</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期日, 三月 22日 2020, 10:02 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    2.8k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      11 分钟
+                  </span>
+                
+
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <p>这次模拟整体难度肯定是比不上正式的省赛的，但是因为种种原因，以及差不多一心情没怎么练习了，所以做的很差，有几个题没来的及看，后面有时间慢慢补上。</p>
+ <a id="more"></a>
+
+<h2 id="1、填空2"><a href="#1、填空2" class="headerlink" title="1、填空2"></a>1、填空2</h2><p>问题描述<br>　　1200000有多少个约数（只计算正约数）。<br>答案提交<br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br><strong>思路</strong>：没啥思路，考察的很基础。</p>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n=1200000,sum=0;
+    for(int i=1;i&lt;=n;i++){
+        if(n%i==0){
+            cout&lt;&lt;i&lt;&lt;endl;
+            sum++;
+        }    
+    }
+    cout&lt;&lt;sum&lt;&lt;endl;
+    return 0;
+}</code></pre>
+<h2 id="2、填空1"><a href="#2、填空1" class="headerlink" title="2、填空1"></a>2、填空1</h2><p>问题描述<br>　　在计算机存储中，15.125GB是多少MB？<br>答案提交<br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br><strong>思路</strong>：不需要编程，直接乘就行了</p>
+<p>15.125*1024=15488</p>
+<h2 id="3、填空3"><a href="#3、填空3" class="headerlink" title="3、填空3"></a>3、填空3</h2><p>问题描述<br>　　一棵包含有2019个结点的二叉树，最多包含多少个叶结点？<br>答案提交<br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br><strong>思路</strong><br>数据结构基础知识：（2019+1）/2=1010</p>
+<p>这个其实我考试的时候没想起来，隐约记得这个知识点，后来百度了才想起来，后面要好好看看大二时候的数据结构了。</p>
+<h2 id="4、填空4"><a href="#4、填空4" class="headerlink" title="4、填空4"></a>4、填空4</h2><p>问题描述<br>　　在1至2019中，有多少个数的数位中包含数字9？<br>　　注意，有的数中的数位中包含多个9，这个数只算一次。例如，1999这个数包含数字9，在计算只是算一个数。<br>答案提交<br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<p><strong>思路</strong>：不算太难</p>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+    int sum = 0;
+    for(int i=1;i&lt;=2019;i++){
+        int t= i;
+        while(t)
+        {
+            if(t%10==9)
+            {
+                cout&lt;&lt;i&lt;&lt;endl;
+                sum++;
+                break;
+            }
+            t/=10;
+        }
+    }
+    cout&lt;&lt;sum&lt;&lt;endl;
+    return 0;
+}</code></pre>
+<h2 id="5、代码题1"><a href="#5、代码题1" class="headerlink" title="5、代码题1"></a>5、代码题1</h2><p>问题描述<br>　　小明对类似于 hello 这种单词非常感兴趣，这种单词可以正好分为四段，第一段由一个或多个辅音字母组成，第二段由一个或多个元音字母组成，第三段由一个或多个辅音字母组成，第四段由一个或多个元音字母组成。<br>　　给定一个单词，请判断这个单词是否也是这种单词，如果是请输出yes，否则请输出no。<br>　　元音字母包括 a, e, i, o, u，共五个，其他均为辅音字母。<br>输入格式<br>　　输入一行，包含一个单词，单词中只包含小写英文字母。<br>输出格式<br>　　输出答案，或者为yes，或者为no。<br>样例输入<br>lanqiao<br>样例输出<br>yes<br>样例输入<br>world<br>样例输出<br>no<br>评测用例规模与约定<br>　　对于所有评测用例，单词中的字母个数不超过100。</p>
+<p><strong>思路：</strong>第一段是辅音，第二段是元音，第三个是辅音，第四个是元音 ，用个标记符flag记录“转换的次数”，达到三次就行了。另外！= 和 ^(异或)作用应该是一样的</p>
+<pre><code class="C++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+bool fun(char t){
+    if(t==&#39;a&#39;||t==&#39;e&#39;||t==&#39;i&#39;||t==&#39;o&#39;||t==&#39;u&#39;)
+        return true;
+    else
+        return false;
+}
+int main()
+{
+    string s;
+    cin&gt;&gt;s;
+    int flag=0;
+    if(fun(s[0])) //第一个字母为元音直接退出 
+    {
+        cout&lt;&lt;&quot;no&quot;&lt;&lt;endl;
+        return 0;
+    }    
+    for(int i=0;i&lt;s.size();i++){
+        if(fun(s[i])!=fun(s[i-1]))//第一段是辅音，第二段是元音，第三个是辅音，第四个是元音 
+            flag++;
+    }
+    if(flag==3)
+        cout&lt;&lt;&quot;yes&quot;&lt;&lt;endl;
+    else
+        cout&lt;&lt;&quot;no&quot;&lt;&lt;endl;
+    return 0;
+}</code></pre>
+<h2 id="6、代码题2"><a href="#6、代码题2" class="headerlink" title="6、代码题2"></a>6、代码题2</h2><p>问题描述<br>　　一个正整数如果任何一个数位不大于右边相邻的数位，则称为一个数位递增的数，例如1135是一个数位递增的数，而1024不是一个数位递增的数。<br>　　给定正整数 n，请问在整数 1 至 n 中有多少个数位递增的数？<br>输入格式<br>　　输入的第一行包含一个整数 n。<br>输出格式<br>　　输出一行包含一个整数，表示答案。<br>样例输入<br>30<br>样例输出<br>26<br>评测用例规模与约定<br>　　对于 40% 的评测用例，1 &lt;= n &lt;= 1000。<br>　　对于 80% 的评测用例，1 &lt;= n &lt;= 100000。<br>　　对于所有评测用例，1 &lt;= n &lt;= 1000000。<br><strong>思路：</strong>感觉不难，但是编程实现的时候着实费了点力气。主要就是出现了左大于右该如何处理。这里利用if判断的特性，调用函数返回0或者1来记录满足条件的数的个数</p>
+<pre><code class="C++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+    int n,sum=0,l,r;
+    cin&gt;&gt;n;
+    for(int i=0;i&lt;n;i++){
+    int t=i,right=i%10;
+            while(t) {
+                t=t/10; 
+                int left=t%10;
+                if((left&gt;right) {
+                    break;
+                }
+                left=right;
+                t=t/10;
+            }
+            if(!t) 
+            sum++;
+
+}
+        printf(&quot;%d\n&quot;,sum);
+} </code></pre>
+<h2 id="7、代码题3"><a href="#7、代码题3" class="headerlink" title="7、代码题3"></a>7、代码题3</h2><p>问题描述<br>　　在数列 a[1], a[2], …, a[n] 中，如果对于下标 i, j, k 满足 0&lt;i&lt;j&lt;k&lt;n+1 且 a[i]&lt;a[j]&lt;a[k]，则称 a[i], a[j], a[k] 为一组递增三元组，a[j]为递增三元组的中心。<br>　　给定一个数列，请问数列中有多少个元素可能是递增三元组的中心。<br>输入格式<br>　　输入的第一行包含一个整数 n。<br>　　第二行包含 n 个整数 a[1], a[2], …, a[n]，相邻的整数间用空格分隔，表示给定的数列。<br>输出格式<br>　　输出一行包含一个整数，表示答案。<br>样例输入<br>5<br>1 2 5 3 5<br>样例输出<br>2<br>样例说明<br>　　a[2] 和 a[4] 可能是三元组的中心。<br>评测用例规模与约定<br>　　对于 50% 的评测用例，2 &lt;= n &lt;= 100，0 &lt;= 数列中的数 &lt;= 1000。<br>　　对于所有评测用例，2 &lt;= n &lt;= 1000，0 &lt;= 数列中的数 &lt;= 10000。</p>
+<p><strong>思路：</strong>还没来得及看</p>
+<pre><code></code></pre><h2 id="8、代码题4"><a href="#8、代码题4" class="headerlink" title="8、代码题4"></a>8、代码题4</h2><p>问题描述<br>　　小明想知道，满足以下条件的正整数序列的数量：<br>　　1. 第一项为 n；<br>　　2. 第二项不超过 n；<br>　　3. 从第三项开始，每一项小于前两项的差的绝对值。<br>　　请计算，对于给定的 n，有多少种满足条件的序列。<br>输入格式<br>　　输入一行包含一个整数 n。<br>输出格式<br>　　输出一个整数，表示答案。答案可能很大，请输出答案除以10000的余数。<br>样例输入<br>4<br>样例输出<br>7<br>样例说明<br>　　以下是满足条件的序列：<br>　　4 1<br>　　4 1 1<br>　　4 1 2<br>　　4 2<br>　　4 2 1<br>　　4 3<br>　　4 4<br>评测用例规模与约定<br>　　对于 20% 的评测用例，1 &lt;= n &lt;= 5；<br>　　对于 50% 的评测用例，1 &lt;= n &lt;= 10；<br>　　对于 80% 的评测用例，1 &lt;= n &lt;= 100；<br>　　对于所有评测用例，1 &lt;= n &lt;= 1000。<br><strong>思路：</strong>应该是个DP问题，我甚至都不打算看了……</p>
+<pre><code></code></pre><h2 id="9、代码题5"><a href="#9、代码题5" class="headerlink" title="9、代码题5"></a>9、代码题5</h2><p>问题描述<br>　　小明有一块空地，他将这块空地划分为 n 行 m 列的小块，每行和每列的长度都为 1。<br>　　小明选了其中的一些小块空地，种上了草，其他小块仍然保持是空地。<br>　　这些草长得很快，每个月，草都会向外长出一些，如果一个小块种了草，则它将向自己的上、下、左、右四小块空地扩展，这四小块空地都将变为有草的小块。<br>　　请告诉小明，k 个月后空地上哪些地方有草。<br>输入格式<br>　　输入的第一行包含两个整数 n, m。<br>　　接下来 n 行，每行包含 m 个字母，表示初始的空地状态，字母之间没有空格。如果为小数点，表示为空地，如果字母为 g，表示种了草。<br>　　接下来包含一个整数 k。<br>输出格式<br>　　输出 n 行，每行包含 m 个字母，表示 k 个月后空地的状态。如果为小数点，表示为空地，如果字母为 g，表示长了草。<br>样例输入<br>4 5<br>.g…<br>…<br>…g…<br>…<br>2<br>样例输出<br>gggg.<br>gggg.<br>ggggg<br>.ggg.<br>评测用例规模与约定<br>　　对于 30% 的评测用例，2 &lt;= n, m &lt;= 20。<br>　　对于 70% 的评测用例，2 &lt;= n, m &lt;= 100。<br>　　对于所有评测用例，2 &lt;= n, m &lt;= 1000，1 &lt;= k &lt;= 1000。<br><strong>思路：</strong>感觉不是很难，没来得及细看</p>
+<pre><code></code></pre><h2 id="10、代码题6"><a href="#10、代码题6" class="headerlink" title="10、代码题6"></a>10、代码题6</h2><p>问题描述<br>　　小明要组织一台晚会，总共准备了 n 个节目。然后晚会的时间有限，他只能最终选择其中的 m 个节目。<br>　　这 n 个节目是按照小明设想的顺序给定的，顺序不能改变。<br>　　小明发现，观众对于晚上的喜欢程度与前几个节目的好看程度有非常大的关系，他希望选出的第一个节目尽可能好看，在此前提下希望第二个节目尽可能好看，依次类推。<br>　　小明给每个节目定义了一个好看值，请你帮助小明选择出 m 个节目，满足他的要求。<br>输入格式<br>　　输入的第一行包含两个整数 n, m ，表示节目的数量和要选择的数量。<br>　　第二行包含 n 个整数，依次为每个节目的好看值。<br>输出格式<br>　　输出一行包含 m 个整数，为选出的节目的好看值。<br>样例输入<br>5 3<br>3 1 2 5 4<br>样例输出<br>3 5 4<br>样例说明<br>　　选择了第1, 4, 5个节目。<br>评测用例规模与约定<br>　　对于 30% 的评测用例，1 &lt;= n &lt;= 20；<br>　　对于 60% 的评测用例，1 &lt;= n &lt;= 100；<br>　　对于所有评测用例，1 &lt;= n &lt;= 100000，0 &lt;= 节目的好看值 &lt;= 100000。<br><strong>思路：</strong>考察了sort函数的cmp参数，但是感觉简单过头了啊，是不是我理解错了？等后面成绩出来再看看吧</p>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=100000;
+bool cmp(int x,int y)
+{
+    return x &gt; y;
+}
+int main()
+{
+    int n,m,a[maxn],t[maxn];
+    cin&gt;&gt;n&gt;&gt;m;
+    for(int i=0;i&lt;n;i++){
+        cin&gt;&gt;a[i];
+        t[i]=a[i];
+    }
+    sort(a,a+n,cmp);
+    int tmp=a[m];
+    for(int i=0;i&lt;n;i++)
+    {
+        if(t[i]&gt;tmp)
+            cout&lt;&lt;t[i]&lt;&lt;&quot; &quot;;
+    }
+    return 0;
+}</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-12 col-md-6">
+                    
+                  </div>
+                  <div class="post-next col-12 col-md-6">
+                    
+                      <a href="/2020/03/21/%E3%80%90%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B001%E3%80%91%E5%B7%9D%E5%A4%A7%E5%A4%8F%E4%BB%A4%E8%90%A5-%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/">
+                        <span>【算法笔记01】川大夏令营-约瑟夫环</span>
+                        <i class="fa fa-chevron-right"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+              
+                <!-- Comments -->
+                <div class="comments" id="comments">
+                  
+                  
+  <div id="vcomments"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var notify = 'false' === 'true';
+    var verify = 'false' === 'true';
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "l6hj9pGbTKbo29FIFUSEyYST-gzGzoHsz",
+        app_key: "zUUuxjNJabYFaA5HeoW97WgR",
+        placeholder: "说点什么吧",
+        avatar: "/retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+                </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var toc = $('#toc');
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+      var tocLimMax = 2 * boardTop + boardCtn.height();
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = boardCtn.css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【蓝桥杯】C/C++校内模拟赛(持续更新)&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

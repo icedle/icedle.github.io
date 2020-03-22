@@ -19,7 +19,7 @@
   <meta name="description" content="A common people, a common student">
   <meta name="author" content="Icedle">
   <meta name="keywords" content="">
-  <title>markdown的各种测试 - Icedle</title>
+  <title>【算法笔记01】川大夏令营-约瑟夫环 - Icedle</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -126,7 +126,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期一, 三月 16日 2020, 9:00 晚上
+                  星期六, 三月 21日 2020, 6:10 晚上
                 </p>
               
 
@@ -135,7 +135,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    42 字
+                    1.4k 字
                   </span>
                 
 
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      1 分钟
+                      5 分钟
                   </span>
                 
 
@@ -171,20 +171,83 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <pre><code class="c++">void main()
+              <h2 id="约瑟夫环问题描述"><a href="#约瑟夫环问题描述" class="headerlink" title="约瑟夫环问题描述"></a>约瑟夫环问题描述</h2><p>已知<strong>n</strong>个人围成一圈（编号：1，2，3，…，n），从编号为1的人开始报数，报数为<strong>m</strong>的那个人出列；从他的下一个人又从1开始数，同样报数为<strong>m</strong>的人出列；依此循环下去，直到剩余一个人。<strong>求最后这一个人在最开始的序列中编号是几号？</strong></p>
+ <a id="more"></a>
+
+<h2 id="普通解法"><a href="#普通解法" class="headerlink" title="普通解法"></a>普通解法</h2><p>刚学数据结构的时候，我们可能用链表的方法去模拟这个过程，N个人看作是N个链表节点，节点1指向节点2，节点2指向节点3，……，节点N-1指向节点N，节点N指向节点1，这样就形成了一个环。然后从节点1开始1、2、3……往下报数，每报到M，就把那个节点从环上删除。下一个节点接着从1开始报数。最终链表仅剩一个节点。它就是最终的胜利者。</p>
+<p>PS:这个是网上随便找的，等有空再更新</p>
+<pre><code class="c">#include &lt;cstdio&gt;
+
+int n,k;
+struct node{
+    int x;
+    node *next;
+    node(int c):x(c),next(NULL){}
+};
+node *first=NULL;
+
+int main()
 {
-printf(“Hello, Markdown.”);
+    scanf(&quot;%d %d&quot;,&amp;n,&amp;k);
+    node *last=new node(1);
+    first=last;
+    for(int i=2;i&lt;=n;i++)
+    last-&gt;next=new node(i),last=last-&gt;next;
+    last-&gt;next=first;
+    for(int i=1;i&lt;=n;i++)
+    {
+        for(int j=1;j&lt;k;j++)
+        last=first,first=first-&gt;next;
+        printf(&quot;%d &quot;,first-&gt;x);
+        last-&gt;next=first-&gt;next;
+        first=first-&gt;next;
+    }
 }</code></pre>
-<p><img src="https://tc-pximg01.techorus-cdn.com/img-original/img/2020/03/16/19/11/22/80161854_p0.png" srcset="/img/loading.gif" alt=""></p>
-<p>这是一个图片。</p>
-<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><p><code>void main()</code><br><code>{</code><br><code>printf(“Hello, Markdown.”);</code><br><code>}</code></p>
-<p>$a=B+c$</p>
-<h2 id="1-1-Hexo部署到github"><a href="#1-1-Hexo部署到github" class="headerlink" title="1.1 Hexo部署到github"></a>1.1 Hexo部署到github</h2><p>$$<br>s=a+b<br>$$</p>
-<pre><code class="C++">void main()
-{
-printf(“Hello, Markdown.”);`
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>要模拟整个游戏过程，时间复杂度高达O(nm)，当n，m非常大(例如上百万，上千万)的时候，几乎是没有办法在短时间内出结果的。</p>
+<h2 id="递归求解分析"><a href="#递归求解分析" class="headerlink" title="递归求解分析"></a>递归求解分析</h2><p>将这n个人从0~n-1编号（1是习惯从0开始；2是如果m大于等于n时，第一个出列的人编号是m%n，m%n可能等于0，简化后续序列的模式化处理），则报数为m-1的人出列，最后结果加1就为原问题的解，以下，我们来分析出列的过程：</p>
+<p>第一次出列-n阶约瑟夫环的问题（n个人）<br>0，1，2，3，4，5，…，n-2，n-1<br>第一次出列的人的编号为<strong>(m-1)%n1</strong>（记n1为第一次编号的总人数），从他的下一个人又开始从0开始报数，为了方便我们记k1=m%n1，如下：<br>0，1，2，3，4，5，…，k1-1(第一次出列人的编号(m-1)%n1)，k1，k1+1，…，n-2，n-1</p>
+<p>由于第二次出列是是从k1开始，又从0开始报数，为了便于模式化我们将第一次出列后的序列排序如下：<br>k1，k1+1，k1+2，…，n-2，n-1，0，1，2，3，4，5，…，k1-3，k1-2（k1-1第一次已经出列）</p>
+<p>第二次出列-n-1阶约瑟夫环问题（n-1个人）<br>对上述序列重新编号：<br>0，1，2，3，4，5，…，n-2<br>第二次出列的人的编号为<strong>(m-1)%n2</strong>（记n2为第一次编号的总人数），从他的下一个人又开始从0开始报数，为了方便我们记k2=m%n2，如下：<br>0，1，2，3，4，5，…，k2-1(第二次出列人的编号(m-1)%n2)，k2，k2+1，…，n-2<br>同样重新排序如下：<br>k2，k2+1，k2+2，…，n-2，n-1，0，1，2，3，4，5，…，k2-3，k2-2（k2-1第二次已经出列）</p>
+<p>第三次出列-n-2阶约瑟夫环问题（n-2个人）<br>对上述序列重新编号：<br>0，1，2，3，4，5，…，n-3<br>…</p>
+<p>第N-1次出列-2阶约瑟夫环问题（2个人）<br>k(n-1)，k(n-1)+1<br>重新编号：<br>0，1<br>第n-1次出列的人的编号为：m%n(n-1)，记下一个人的为k(n-1)=m%n2<br>k(n-1)</p>
+<p>第N次出列-1阶约瑟夫环问题（1个人）<br>对上述序列重新编号：<br>0<br>直接得出结果为0。</p>
+<h2 id="结论总结"><a href="#结论总结" class="headerlink" title="结论总结"></a>结论总结</h2><p>以上我们将问题转换为模式相同且规模逐渐缩小的问题，当规模最小即只有一个人n=1时，报数为m-1的人出列，最后出列的人编号为0；当n=2时，报数为m-1的人出列，最后出列人的编号是多少？应该是只有一个人时得到最后出列的序号加上m（因为报数为m-1的人已经出列，剩下那个人才最后出列所以才加上m）<br>n=1时，f(1)=0；<br>n=2时，f(2)=[f(1)+m]%2；<br>n=3时，f(3)=[f(2)+m]%3；<br>验证结果：2个人围成一圈，数到3的那人出列，求最后那个人的编号？n=2，m=3<br>f(2)=[f(1)+m]%2=[0+3]%2=1<br>最后结果加1，则result=2；</p>
+<p>代码：</p>
+<pre><code class="c++">#include&lt;stdio.h&gt;
+int fun(int n,int m){
+ if(n==1)
+  return 0;
+ else 
+  return (fun(n-1,m)+m)%n;
+}
+
+int main(){
+ int n,m;
+ cin&gt;&gt;n&gt;&gt;m;
+ int count=fun(n,m);
+ cout&gt;&gt;count+1&gt;&gt;endl;
+ return 0;
+} </code></pre>
+<h2 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h2><p>f(1)=0；//递归出口<br>f(n)=[f(n-1)+m]%n；//递归体`</p>
+<p>这里就不用归纳法了，时间复杂度太高，直接从上述总结公式</p>
+<p><strong>递推公式：</strong><br>$$<br>f(N,M)=(f(N−1,M)+M)<br>$$</p>
+<ul>
+<li>$f(N,M)$表示，N个人报数，每报到M时出列那个人，最终胜利者的编号</li>
+<li>$f(N−1,M)$表示，N-1个人报数，每报到M时出列那个人，最终胜利者的编号</li>
+</ul>
+<pre><code class="c">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+ int n,m=3;
+ cin&gt;&gt;n;
+ int ans=0,i=0;
+ for(i=1;i&lt;=n;i++){
+  ans=(ans+m)%i;
+ }
+ cout&lt;&lt;ans+1;
+ return 0;
 }</code></pre>
-<h2 id="1-2-随便说说"><a href="#1-2-随便说说" class="headerlink" title="1.2 随便说说"></a>1.2 随便说说</h2>
+
             </div>
             <hr>
             <div>
@@ -194,7 +257,7 @@ printf(“Hello, Markdown.”);`
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/test/">test</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
                   </span>
                 
@@ -206,9 +269,9 @@ printf(“Hello, Markdown.”);`
                 <div class="post-prevnext row">
                   <div class="post-prev col-12 col-md-6">
                     
-                      <a href="/2020/03/19/%E6%B5%8B%E8%AF%95%E7%BD%AE%E9%A1%B6/">
+                      <a href="/2020/03/22/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91C-C-%E6%A0%A1%E5%86%85%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                         <i class="fa fa-chevron-left"></i>
-                        <span>测试置顶</span>
+                        <span>【蓝桥杯】C/C++校内模拟赛(持续更新)</span>
                       </a>
                     
                   </div>
@@ -452,7 +515,7 @@ printf(“Hello, Markdown.”);`
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "markdown的各种测试&nbsp;",
+        "【算法笔记01】川大夏令营-约瑟夫环&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -509,32 +572,6 @@ printf(“Hello, Markdown.”);`
   </script>
 
 
-
-  
-
-  
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-          tex2jax: {
-              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-              processEscapes: true,
-              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-          }
-      });
-
-      MathJax.Hub.Queue(function() {
-          var all = MathJax.Hub.getAllJax(), i;
-          for(i=0; i < all.length; i += 1) {
-              all[i].SourceElement().parentNode.className += ' has-jax';
-          }
-      });
-
-    </script>
-
-    <script  src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
-
-  
 
 
 
