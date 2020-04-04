@@ -4,6 +4,63 @@
   
   
   <entry>
+    <title>【蓝桥杯】P1001（大数乘法）</title>
+    <link href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91P1001%EF%BC%88%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%89/"/>
+    <url>/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91P1001%EF%BC%88%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>利用模拟乘法过程的思想来解决，这也是川大夏令营考过的算法</p><a id="more"></a><p>　　当两个比较大的整数相乘时，可能会出现数据溢出的情形。为避免溢出，可以采用字符串的方法来实现两个大数之间的乘法。具体来说，首先以字符串的形式输入两个整数，每个整数的长度不会超过8位，然后把它们相乘的结果存储在另一个字符串当中（长度不会超过16位），最后把这个字符串打印出来。例如，假设用户输入为：62773417和12345678，则输出结果为：774980393241726.</p><p><strong>输入：</strong><br>　　62773417 12345678</p><p><strong>输出：</strong><br>　　774980393241726</p><h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>对于用字符串存大整数，并且进行乘法操作问题，主要考虑的就是进位的问题。而乘法不同于加减，加减只需要按位一位一位的去操作，我们小学就学过乘法计算的步骤，是被乘数依次去乘以乘数的每一位，然后进行相加，所以就不能直接一个循环去解决，而需要一个二重循环，具体思路见下图：</p><p><img src="/img/%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95.png" srcset="/img/loading.gif" alt=""></p><p>第一个循环记录乘法结果，第二个循环记录加法结果，同时利用循环巧妙的解决进位问题，具体代码如下：</p><pre><code class="c++">#include &lt;bits/stdc++.h&gt;using namespace std;int f[17][17]={0};int main(){    string s1,s2;    cin&gt;&gt;s1&gt;&gt;s2;    if(s1==&quot;0&quot;||s2==&quot;0&quot;){//没有这个的话最后一组用例无法通过        cout&lt;&lt;0;        return 0;    }    int m=0;//和jp一起作为f的下标    int rx=0;//乘法进位    for(int i=s2.length()-1;i&gt;=0;i--){        int jp =16 +(i-s2.length()+1);//16,15,14...        for(int j=s1.length()-1;j&gt;=0;j--){            int s = int(s2[i]-&#39;0&#39;)*int(s1[j]-&#39;0&#39;);            f[m][jp--]+=s%10;            f[m][jp] = s/10; //进位正好在前一位        }        m++;    }    int fin[17]={0};//记录加法最终结果    for(int k =16;k&gt;=0;k--){        for(int p = 0;p&lt;m;p++){            fin[k]+=f[p][k];        }        fin[k-1] = fin[k]/10;//记录进位        fin[k] = fin[k]%10;    }    int ii = 0;    while(fin[ii]==0)ii++;//忽略前导0    for(int i=ii;i&lt;17;i++){        cout&lt;&lt;fin[i];    }    return 0;}</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>蓝桥杯，算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【蓝桥杯】票据错误</title>
+    <link href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E7%A5%A8%E6%8D%AE%E9%94%99%E8%AF%AF/"/>
+    <url>/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E7%A5%A8%E6%8D%AE%E9%94%99%E8%AF%AF/</url>
+    
+    <content type="html"><![CDATA[<p>排序，注意断号和重号的判断，以及scanf(“%d”,&amp;a)!=EOF的使用</p><a id="more"></a><h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>某涉密单位下发了某种票据，并要在年终全部收回。</p><p>每张票据有唯一的ID号。全年所有票据的ID号是连续的，但ID的开始数码是随机选定的。</p><p>因为工作人员疏忽，在录入ID号的时候发生了一处错误，造成了某个ID断号，另外一个ID重号。</p><p>你的任务是通过编程，找出断号的ID和重号的ID。</p><p>假设断号不可能发生在最大和最小号。</p><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>要求程序首先输入一个整数N(N&lt;100)表示后面数据行数。</p><p>接着读入N行数据。</p><p>每行数据长度不等，是用空格分开的若干个（不大于100个）正整数（不大于100000），请注意行内和行末可能有多余的空格，你的程序需要能处理这些空格。</p><p>每个整数代表一个ID号。</p><h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>要求程序输出1行，含两个整数m n，用空格分隔。</p><p>其中，m表示断号ID，n表示重号ID</p><p>样例输入1</p><p>2<br>5 6 8 11 9<br>10 12 9</p><p>样例输出1</p><p>7 9</p><p>样例输入2</p><p>6<br>164 178 108 109 180 155 141 159 104 182 179 118 137 184 115 124 125 129 168 196<br>172 189 127 107 112 192 103 131 133 169 158<br>128 102 110 148 139 157 140 195 197<br>185 152 135 106 123 173 122 136 174 191 145 116 151 143 175 120 161 134 162 190<br>149 138 142 146 199 126 165 156 153 193 144 166 170 121 171 132 101 194 187 188<br>113 130 176 154 177 120 117 150 114 183 186 181 100 163 160 167 147 198 111 119</p><p>样例输出2</p><p>105 120</p><h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code class="c++">#include&lt;bits/stdc++.h&gt;using namespace std;int main(){    int n,a,num=0,ans1,ans2;    int p[105];    cin&gt;&gt;n;    while(scanf(&quot;%d&quot;,&amp;a)!=EOF)    {        p[num++]=a;    }    sort(p,p+num);    //寻找断号和重号     for(int i=0 ;i&lt;num-1 ;i++){        if(p[i]==p[i+1]) ans2 = p[i];        if(p[i]==p[i+1]-2) ans1 = p[i]+1;    }    cout&lt;&lt;ans1&lt;&lt;&quot; &quot;&lt;&lt;ans2&lt;&lt;endl;    return 0;} </code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>蓝桥杯，排序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【蓝桥杯】转圈游戏（快速幂）</title>
+    <link href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E8%BD%AC%E5%9C%88%E6%B8%B8%E6%88%8F%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/"/>
+    <url>/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E8%BD%AC%E5%9C%88%E6%B8%B8%E6%88%8F%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>答案用找规律的方法归纳总结一下。这题是快速幂的一个代码模板，具体论述在《算法笔记》的P134-P136。</p><a id="more"></a><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>n 个小伙伴（编号从 0 到 n-1）围坐一圈玩游戏。按照顺时针方向给 n 个位置编号，从0 到 n-1。最初，第 0 号小伙伴在第 0 号位置，第 1 号小伙伴在第 1 号位置，……，依此类推。游戏规则如下：每一轮第 0 号位置上的小伙伴顺时针走到第 m 号位置，第 1 号位置小伙伴走到第 m+1 号位置，……，依此类推，第n ? m号位置上的小伙伴走到第 0 号位置，第n-m+1 号位置上的小伙伴走到第 1 号位置，……，第 n-1 号位置上的小伙伴顺时针走到第m-1 号位置。</p><p>现在，一共进行了 10^k轮，请问 x 号小伙伴最后走到了第几号位置。</p><h5 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h5><p>输入共 1 行,包含 4 个整数 n、m、k、x,每两个整数之间用一个空格隔开。</p><h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>　　输出共 1 行,包含 1 个整数,表示 10k 轮后 x 号小伙伴所在的位置编号。</p><h5 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h5><p>￼10 3 4 5</p><h5 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h5><p>5</p><h5 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h5><p>　　对于 30%的数据,0 &lt; k &lt; 7;<br>　　对于 80%的数据,0 &lt; k &lt; 10^7;<br>　　对于 100%的数据,1 &lt; n &lt; 1,000,000,0 &lt; m &lt; n,1 ≤ x ≤ n,0 &lt; k &lt; 10^9。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p><strong>**</strong>针对不同的题目，有两个细节需要注意<br>1）如果初始值a 大于 m ，那么需要在进入函数前就让a 对 m 取模，<br>2）若果m 为 1，可以直接在函数外部特判为 0，不需要进入函数来计算。（因为任何数对1 取模都是0。</p><p>快速幂的基本思路求a ^ b<br>1）当b是奇数时，那么有 a^b = a * a^*(b-1)<br>2）当b是偶数时，那么有 a^b = a^(b/2) * a^(b/2)<br>if(b % 2 == 1)可以改为if(b &amp; 1)</p><ol><li>因为b &amp; 1 是按位与，判断b的末尾是否为1 ，因此当b 为奇数时 b &amp; 1 返回为1，if条件成立，这样执行速度更快</li><li>k=k&gt;&gt;1 就相当于 k = (k &gt;&gt; 1)也就是把k的2进制数整体往右移动一位，最左边用0补充,右移1位相当于除以 2。。</li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="c++">#include &lt;bits/stdc++.h&gt;using namespace std;#define ll long longint main(){ ll n,m,x,k; ll ans=1,t=10; cin&gt;&gt;n&gt;&gt;m&gt;&gt;k&gt;&gt;x; while(k) {  if(k&amp;1)//if(k%2==1)  ans=(ans*t)%n;  k=k&gt;&gt;1;//k=k/2;  t=(t*t)%n; } cout&lt;&lt;(x+ans*m)%n&lt;&lt;endl;}</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>蓝桥杯，快速幂</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【蓝桥杯】小数的第n位</title>
     <link href="/2020/04/02/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E5%B0%8F%E6%95%B0%E7%9A%84%E7%AC%ACn%E4%BD%8D/"/>
     <url>/2020/04/02/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E5%B0%8F%E6%95%B0%E7%9A%84%E7%AC%ACn%E4%BD%8D/</url>

@@ -19,7 +19,7 @@
   <meta name="description" content="A common people, a common student">
   <meta name="author" content="Icedle">
   <meta name="keywords" content="">
-  <title>【蓝桥杯】小数的第n位 - Icedle</title>
+  <title>【蓝桥杯】票据错误 - Icedle</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -126,7 +126,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期四, 四月 2日 2020, 11:46 晚上
+                  星期六, 四月 4日 2020, 11:03 晚上
                 </p>
               
 
@@ -135,7 +135,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    662 字
+                    517 字
                   </span>
                 
 
@@ -171,55 +171,48 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <p>很久没有练习了，下一阶段开始看真题训练。这一题看起来很简单但是处理起来比较棘手。主要有两种做法，一种是模拟（网上有的模拟需要用队列来优化循环防止超时，但是我看到的这个博主的做法很巧妙，所以记录下来）。第二种是求逆元，需要一些初等数论的知识，具体证明在算法笔记的176页，后续更新。 </p>
+              <p>排序，注意断号和重号的判断，以及scanf(“%d”,&amp;a)!=EOF的使用</p>
 <a id="more"></a>
 
-<h2 id="资源限制"><a href="#资源限制" class="headerlink" title="资源限制"></a>资源限制</h2><p>时间限制：1.0s  内存限制：256.0MB</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　我们知道，整数做除法时，有时得到有限小数，有时得到无限循环小数。<br>　　如果我们把有限小数的末尾加上无限多个0，它们就有了统一的形式。</p>
-<p>　　本题的任务是：在上面的约定下，求整数除法小数点后的第n位开始的3位数。</p>
-<p>输入格式</p>
-<p>　　一行三个整数：a b n，用空格分开。a是被除数，b是除数，n是所求的小数后位置（0&lt;a,b,n&lt;1000000000）</p>
-<p>输出格式</p>
-<p>　　一行3位数字，表示：a除以b，小数后第n位开始的3位数字。</p>
-<p>样例输入</p>
-<p>1 8 1</p>
-<p>样例输出</p>
-<p>125</p>
-<p>样例输入</p>
-<p>1 8 3</p>
-<p>样例输出</p>
-<p>500</p>
-<p>样例输入</p>
-<p>282866 999000 6</p>
-<p>样例输出</p>
-<p>914</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这个问题看起来很简单，但是处理起来是很麻烦的，网上主流的有两种解决方法，第一种是模拟，但是不能用暴力的方法，不然会超时，我们可以利用数学方法巧妙地解决。</p>
-<p>例如计算1/13的第13（即n=13）位小数，结果是0.33333…..，如果我们将这个结果乘以1*10^10，就变成了3333333333.3333……，利用这种方法可以减小n的数值。</p>
-<p>对于这个例子，我们吧1*10^10%3的余数为1，次数n=n-10，即n=3；说明我们只需要对余数1再模拟出发运算三次就可以得到我们要的三个数的第一位数，运算两次就可以得到第二位和第三位小数。</p>
-<pre><code class="c++">#include&lt;bits/stdc++&gt;
+<h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>某涉密单位下发了某种票据，并要在年终全部收回。</p>
+<p>每张票据有唯一的ID号。全年所有票据的ID号是连续的，但ID的开始数码是随机选定的。</p>
+<p>因为工作人员疏忽，在录入ID号的时候发生了一处错误，造成了某个ID断号，另外一个ID重号。</p>
+<p>你的任务是通过编程，找出断号的ID和重号的ID。</p>
+<p>假设断号不可能发生在最大和最小号。</p>
+<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>要求程序首先输入一个整数N(N&lt;100)表示后面数据行数。</p>
+<p>接着读入N行数据。</p>
+<p>每行数据长度不等，是用空格分开的若干个（不大于100个）正整数（不大于100000），请注意行内和行末可能有多余的空格，你的程序需要能处理这些空格。</p>
+<p>每个整数代表一个ID号。</p>
+<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>要求程序输出1行，含两个整数m n，用空格分隔。</p>
+<p>其中，m表示断号ID，n表示重号ID</p>
+<p>样例输入1</p>
+<p>2<br>5 6 8 11 9<br>10 12 9</p>
+<p>样例输出1</p>
+<p>7 9</p>
+<p>样例输入2</p>
+<p>6<br>164 178 108 109 180 155 141 159 104 182 179 118 137 184 115 124 125 129 168 196<br>172 189 127 107 112 192 103 131 133 169 158<br>128 102 110 148 139 157 140 195 197<br>185 152 135 106 123 173 122 136 174 191 145 116 151 143 175 120 161 134 162 190<br>149 138 142 146 199 126 165 156 153 193 144 166 170 121 171 132 101 194 187 188<br>113 130 176 154 177 120 117 150 114 183 186 181 100 163 160 167 147 198 111 119</p>
+<p>样例输出2</p>
+<p>105 120</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code class="c++">#include&lt;bits/stdc++.h&gt;
 using namespace std;
 
-typedef long long ll;
-
-int mian(){
-  ll a;
-  ll b;
-  int n;
-  cin&gt;&gt;a&gt;&gt;b&gt;&gt;n;
-  while(n-10&gt;0){//快速缩小n，逼近第n位
-    a*=1e10;
-    a%=b;
-    n-=10;
-  }
-  for(int i=0;i&lt;n+2;i++){
-    a*=10;//①因为之前对b取余得到的，所以此时的a一定小于吧，对a*10，在b取余时可以获得一位数
-    if(i&gt;n-1){
-      cout&lt;&lt;a/b;
+int main(){
+    int n,a,num=0,ans1,ans2;
+    int p[105];
+    cin&gt;&gt;n;
+    while(scanf(&quot;%d&quot;,&amp;a)!=EOF)
+    {
+        p[num++]=a;
     }
-    a%=b;//①中说的取余
-  }
-  return 0;
-}</code></pre>
+    sort(p,p+num);
+    //寻找断号和重号 
+    for(int i=0 ;i&lt;num-1 ;i++){
+        if(p[i]==p[i+1]) ans2 = p[i];
+        if(p[i]==p[i+1]-2) ans1 = p[i]+1;
+    }
+    cout&lt;&lt;ans1&lt;&lt;&quot; &quot;&lt;&lt;ans2&lt;&lt;endl;
+    return 0;
+} </code></pre>
 
             </div>
             <hr>
@@ -230,9 +223,7 @@ int mian(){
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF%EF%BC%8C%E6%8E%92%E5%BA%8F/">蓝桥杯，排序</a>
                     
                   </span>
                 
@@ -245,9 +236,9 @@ int mian(){
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E8%BD%AC%E5%9C%88%E6%B8%B8%E6%88%8F%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/">
+                      <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91P1001%EF%BC%88%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%89/">
                         <i class="fa fa-chevron-left"></i>
-                        <span class="hidden-mobile">【蓝桥杯】转圈游戏（快速幂）</span>
+                        <span class="hidden-mobile">【蓝桥杯】P1001（大数乘法）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -255,8 +246,8 @@ int mian(){
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/22/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91C-C-%E6%A0%A1%E5%86%85%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%20%E4%B8%8B%E5%8D%8811.30.04/">
-                        <span class="hidden-mobile">【蓝桥杯】C/C++校内模拟赛(持续更新)</span>
+                      <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E8%BD%AC%E5%9C%88%E6%B8%B8%E6%88%8F%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/">
+                        <span class="hidden-mobile">【蓝桥杯】转圈游戏（快速幂）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="fa fa-chevron-right"></i>
                       </a>
@@ -506,7 +497,7 @@ int mian(){
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【蓝桥杯】小数的第n位&nbsp;",
+        "【蓝桥杯】票据错误&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
