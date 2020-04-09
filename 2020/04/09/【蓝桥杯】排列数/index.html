@@ -19,7 +19,7 @@
   <meta name="description" content="A common people, a common student">
   <meta name="author" content="Icedle">
   <meta name="keywords" content="">
-  <title>【算法笔记02】n皇后问题（回溯+递归） - Icedle</title>
+  <title>【算法笔记】全排列数（蓝桥杯，排列数） - Icedle</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -126,7 +126,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期一, 四月 6日 2020, 11:25 晚上
+                  星期四, 四月 9日 2020, 3:50 下午
                 </p>
               
 
@@ -135,7 +135,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1.2k 字
+                    649 字
                   </span>
                 
 
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      4 分钟
+                      2 分钟
                   </span>
                 
 
@@ -171,103 +171,69 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <p>n皇后问题是一个以国际象棋为背景的问题：在n×n的国际象棋棋盘上放置n个皇后，使得任何一个皇后都无法直接吃掉其他的皇后，即任意两个皇后都不恩能够处于同一条横行、纵行或对角线上。</p>
+              <p>全排列数是指一般把1~n这n个整数按照某个顺序摆放的结果。例如1，2，3，其全排列就是123，132，213，231，312，321。对于这个问题可以利用递归解决。</p>
 <a id="more"></a>
 
-<p>这个问题我们可以用递归的方法解决，再加上回溯算法进行优化。具体的优化证明在《算法笔记》P112页。</p>
-<pre><code class="c++">void generateP(int index){
-   if(index == n+1){  //设置递归边界
-            count++;  //能达到这里说明是符合条件的
-      return;
-   }
-    for(int x=1;x&lt;=n;x++){  //第x行
-            if(hashTable[x]==false) //如果第x行没有皇后
-            flag=true; //表示和之前的皇后不会有冲突
-            for（int pre=1;pre&lt;index;pre++）{//遍历之前的皇后
-            //第index列皇后的行号为x，第pre列皇后的行号为P[pre]
-                if(abs(index-pre)==abs(x-P[pre])){
-                        flag = false; //与之前一个皇后的一条对角线冲突
-                        break;
-                }
-            }
-            if(flag){//如果可以把皇后放在第x行
-                    P[index] = x; //令第index列皇后的行号为x
-                    hashTable[x]=true; //第x行已经被占用
-                    generateP(index+1);  //递归处理第index+1行皇后
-                    hashTable[x]=false; //递归完毕，还原第x行为未占用
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>　　0、1、2三个数字的全排列有六种，按照字母序排列如下：<br>012、021、102、120、201、210<br>输入一个数n<br>求0~9十个数的全排列中的第n个（第1个为0123456789）。</p>
+<p>输入格式</p>
+<p>　　一行，包含一个整数n</p>
+<p>输出格式</p>
+<p>　　一行，包含一组10个数字的全排列</p>
+<p>样例输入</p>
+<p>1</p>
+<p>样例输出</p>
+<p>0123456789</p>
+<p>数据规模和约定</p>
+<p>　　0 &lt; n &lt;= 10!</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>主要有两种解决思路，一种是按照《算法笔记中》p115所示，利用递归写一个深搜：</p>
+<p>假设有10个位置，需要在10个位置上依次放置0~9这十个数字。<br>1.先走到第一个位置，此时放置一个当前可以放置的数字当中最小的那个数字。<br>2.在走到第二个位置，放置一个当前可以放置的数字当中最小的那个数字。<br>…<br>3.到第10个位置时候，所有的数字已经放置完毕，属于第一个全排列。<br>4.收回第10个位置上的数字，此时还是只可以放置9，那么再到第9个位置面前，收回位置上的数字。<br>5.在第9个位置处，我们此时可以放置的数字有9，那么第10个位置放8.属于第二个全排列。<br>6.收回第10、9、8位置的数字，此时可以在第8个位置放置8.<br>…</p>
+<p>用一个数组标记当前的数字是否已经被使用过了。<br>int p[10]; //一开始的时候没有被使用，初始化值为0.使用过了之后标记为1.<br>int hashTable[10]; // 表示这10个需要放置数字的位置。<br>深度优先搜索：</p>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n, p[10], hashTable[10];
+int num=0;
+void dfs(int index) {
+    if (index == 10) {//递归边界
+        num++;
+        if (num == n) {
+            for (int i = 0; i&lt;=9; i++) {
+                cout &lt;&lt; p[i];
             }
         }
-}</code></pre>
-<h4 id="下面我们来看一下2n皇后的问题"><a href="#下面我们来看一下2n皇后的问题" class="headerlink" title="下面我们来看一下2n皇后的问题"></a>下面我们来看一下2n皇后的问题</h4><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>　　给定一个n*n的棋盘，棋盘中有一些位置不能放皇后。现在要向棋盘中放入n个黑皇后和n个白皇后，使任意的两个黑皇后都不在同一行、同一列或同一条对角线上，任意的两个白皇后都不在同一行、同一列或同一条对角线上。问总共有多少种放法？n小于等于8。<br>输入格式<br>　　输入的第一行为一个整数n，表示棋盘的大小。<br>　　接下来n行，每行n个0或1的整数，如果一个整数为1，表示对应的位置可以放皇后，如果一个整数为0，表示对应的位置不可以放皇后。<br>输出格式<br>　　输出一个整数，表示总共有多少种放法。<br>样例输入<br>4<br>1 1 1 1<br>1 1 1 1<br>1 1 1 1<br>1 1 1 1<br>样例输出<br>2<br>样例输入<br>4<br>1 0 1 1<br>1 1 1 1<br>1 1 1 1<br>1 1 1 1<br>样例输出<br>0</p>
-<p>如果你之前熟悉n皇后问题的解法，相信对于2n皇后问题也是很好理解的。如果对于n皇后问题还是不太清楚，那请浏览本人前面的文章，就很清楚n皇后后问题的递归与回溯解法。</p>
-<pre><code class="c++">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int maxn=11;
-int a[9][9];//输入的数组
-int count=0;
-int n;
-int P1[maxn] ,P2[maxn];
-int hashTable1[maxn] = {false},hashTable2[maxn] = {false};//标记某列是否被占用 
-void generateP(int index)//给第index行排黑与白皇后 
-{
-   if(index==n+1)
-   {
-        count++;
-        return ;
-   }
-   for(int x1=1;x1&lt;=n;x1++)//给第index行，第x1列排黑皇后 （先排黑皇后） 
-   {
-        if(a[index][x1]&amp;&amp;hashTable1[x1]==false)//第x1列还没有黑皇后
-        {
-           bool flag1=true;// flag表示当前黑皇后不会和之前的皇后冲突
-           for(int pre=1;pre&lt;index;pre++)// 遍历index之前行排过的皇黑后
-           {//第index行的皇后的列号为x1,第pre行皇后的列号为P1[pre]
-                if(abs(index-pre)==abs(x1-P1[pre])) //横坐标之差==纵坐标之差 
-                {
-                  flag1=false;// 与之前的皇后在一条对角线,冲突
-                  break;
-                }
-           }
-           if(flag1)//如果可以把黑皇后放在第index行
-           {
-                   for(int x2=1;x2&lt;=n;x2++)
-                   {
-                       if(a[index][x2]&amp;&amp;hashTable2[x2]==false&amp;&amp;x2!=x1)//第x列还没有白皇后
-                       {
-                           bool flag2=true;// flag表示当前白皇后不会和之前的皇后冲突
-                        for(int pre=1;pre&lt;index;pre++)// 遍历index之前行排过的白皇后
-                        {//第index行的皇后的列号为x2,第pre行皇后的列号为P2[pre]
-                            if(abs(index-pre)==abs(x2-P2[pre])) //横坐标之差==纵坐标之差 
-                            {
-                              flag2=false;// 与之前的白皇后在一条对角线,冲突
-                              break;
-                            }
-                        }
-                        if(flag2)
-                        {
-                            P1[index]=x1;//给第index行，x1列排黑皇后 
-                            P2[index]=x2;//给第index行，x2列排白皇后 
-                            hashTable1[x1]=true;//第x1列已经被占用
-                            hashTable2[x2]=true;//第x2列已经被占用
-                            generateP(index+1);//递归处理第index+1行以及之后行（index+1~n）的黑皇后和白皇后
-                            hashTable1[x1]=false;//递归完毕,还原第x1列为占用状态
-                            hashTable2[x2]=false;//递归完毕,还原第x2列为占用状态
-                        }
-                    }
-                }
-            }
+        return;
+    }
+    for (int i = 0; i &lt;=9; i++) {
+        if (hashTable[i] == 0) {
+            p[index] = i;
+            hashTable[i] = 1;
+            dfs(index + 1);
+            hashTable[i] = 0;
         }
     }
 }
-int main()
-{
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;=n;i++)
-         for(int j=1;j&lt;=n;j++)
-         cin&gt;&gt;a[i][j];
-    generateP(1);
-    printf(&quot;%d\n&quot;,count);
-  return 0;
+    int main(){
+        cin&gt;&gt;n;
+        dfs(0);
+        return 0;
+    }</code></pre>
+<p>比较机智的做法是利用自带的库函数，<strong>在algorithm里面</strong>，贴一下大佬的博客</p>
+<p><a href="https://www.liuchuo.net/archives/427" target="_blank" rel="noopener">https://www.liuchuo.net/archives/427</a></p>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main() {
+    string s = &quot;0123456789&quot;;
+    int n;
+    cin &gt;&gt; n;
+    int cnt = 1;
+    do {
+        if(cnt == n) {
+            cout &lt;&lt; s;
+            break;
+        }
+        cnt++;
+    }while(next_permutation(s.begin(), s.end()));
+    return 0;
 }</code></pre>
 
             </div>
@@ -279,7 +245,7 @@ int main()
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%EF%BC%8C%E5%9B%9E%E6%BA%AF%EF%BC%8C%E9%80%92%E5%BD%92/">算法，回溯，递归</a>
+                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF%EF%BC%8C%E9%80%92%E5%BD%92/">蓝桥杯，递归</a>
                     
                   </span>
                 
@@ -292,18 +258,12 @@ int main()
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/09/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E6%8E%92%E5%88%97%E6%95%B0/">
-                        <i class="fa fa-chevron-left"></i>
-                        <span class="hidden-mobile">【算法笔记】全排列数（蓝桥杯，排列数）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91P1001%EF%BC%88%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%89/">
-                        <span class="hidden-mobile">【蓝桥杯】P1001（大数乘法）</span>
+                      <a href="/2020/04/06/%E3%80%90%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B002%E3%80%91n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98%EF%BC%88%E5%9B%9E%E6%BA%AF-%E9%80%92%E5%BD%92%EF%BC%89/">
+                        <span class="hidden-mobile">【算法笔记02】n皇后问题（回溯+递归）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="fa fa-chevron-right"></i>
                       </a>
@@ -553,7 +513,7 @@ int main()
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【算法笔记02】n皇后问题（回溯+递归）&nbsp;",
+        "【算法笔记】全排列数（蓝桥杯，排列数）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
